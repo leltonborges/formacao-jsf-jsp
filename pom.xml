@@ -1,0 +1,27 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>br.com.forma</groupId>
+    <artifactId>study-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>Archetype - study</name>
+
+    <url>http://maven.apache.org</url>
+    <modules>
+        <module>study-jpa</module>
+    </modules>
+
+    <scm>
+        <url>scm:git@github.com:leltonborges/formacao-jsf-jsp.git</url>
+        <connection>scm:git@github.com:leltonborges/formacao-jsf-jsp.git</connection>
+        <developerConnection>git@github.com:leltonborges/formacao-jsf-jsp.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <dependencies>
+
+    </dependencies>
+
+
+</project>
