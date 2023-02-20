@@ -1,41 +1,18 @@
-version: '3.9'
+version: "3.9"
 services:
-  rabbitmq:
-    container_name: rabbitmq
-    image: rabbitmq:3.9-management
-    ports:
-      - 5672:5672
-      - 15672:15672
-    volumes:
-      - rabbitmq:/var/lib/rabbitmq
+  bd_mariadb:
+    image: mariadb:10.10.3
     environment:
-      RABBITMQ_DEFAULT_USER: guest
-      RABBITMQ_DEFAULT_PASS: guest
-    networks:
-      - monitoring
-
-  prometheus:
-    container_name: prometheus
-    image: prom/prometheus
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-    networks:
-      - monitoring
+      MARIADB_ROOT_PASSWORD: "secret"
+      MARIADB_PASSWORD: "secret"
+      MARIADB_USER: "study"
+      MARIADB_DATABASE: jpa
     ports:
-      - 9090:9090
-
-  grafana:
-    container_name: grafana
-    image: grafana/grafana
-    ports:
-      - 3000:3000
+      - "3310:3306"
     networks:
-      - monitoring
+      - study_jpa
 
-volumes:
-  rabbitmq:
 networks:
-  rabbitmq:
-    driver: bridge
-  monitoring:
+  study_jpa:
+    name: study-jpa
     driver: bridge
