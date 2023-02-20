@@ -1,0 +1,11 @@
+CREATE SEQUENCE SQ_ACCOUNT INCREMENT BY 1 START WITH 1;
+
+CREATE TABLE TB_ACCOUNT
+(
+    SEQ_ACCOUNT     BIGINT  DEFAULT nextval(`jpa`.`SQ_ACCOUNT`) NOT NULL,
+    AGENCY_ACCOUNT  INT                                         NOT NULL,
+    NUMBER_ACCOUNT  INT                                         NOT NULL,
+    OWNER_ACCOUNT   VARCHAR(255)                                NOT NULL,
+    BALANCE_ACCOUNT DECIMAL DEFAULT 0.0                         NOT NULL,
+    CONSTRAINT PK_TB_ACCOUNT PRIMARY KEY (SEQ_ACCOUNT)
+);

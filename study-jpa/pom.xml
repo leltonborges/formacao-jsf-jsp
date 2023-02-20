@@ -18,6 +18,7 @@
         <java.release>17</java.release>
         <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <flyway.version>9.15.0</flyway.version>
     </properties>
 
     <dependencies>
@@ -27,16 +28,15 @@
             <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
-
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-agroal</artifactId>
-            <version>6.1.7.Final</version>
-        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.26</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>3.1.2</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -44,20 +44,26 @@
             <version>5.6.15.Final</version>
         </dependency>
         <dependency>
-            <groupId>org.hibernate.javax.persistence</groupId>
-            <artifactId>hibernate-jpa-2.1-api</artifactId>
-            <version>1.0.2.Final</version>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-mysql</artifactId>
+            <version>${flyway.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-annotations</artifactId>
-            <version>3.5.6-Final</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate.validator</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>6.1.7.Final</version>
-        </dependency>
-
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>${flyway.version}</version>
+                <configuration>
+                    <user>study</user>
+                    <password>secret</password>
+                    <schemas>study-jpa</schemas>
+                    <url>jdbc:mariadb://127.0.0.1:3310/jpa</url>
+                    <schemas>jpa</schemas>
+                    <locations>filesystem:${basedir}/src/main/resources/db/migration</locations>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
